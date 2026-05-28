@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moolvy - Всегда с вами</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- ЦВЕТОВЫЕ ТЕМЫ --- */
+        :root {
+            /* Светлая тема */
+            --bg-gradient: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --accent: #0284c7;
+            --glass-bg: rgba(255, 255, 255, 0.5);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+
+        [data-theme="dark"] {
+            /* Темная тема */
+            --bg-gradient: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --accent: #38bdf8;
+            --glass-bg: rgba(15, 23, 42, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        /* --- БАЗОВЫЕ СТИЛИ --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-attachment: fixed;
+        }
+
+        .bg-circle-1, .bg-circle-2 {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.6;
+        }
+        .bg-circle-1 {
+            width: 40vw; height: 40vw; background: var(--accent); top: -10vw; left: -10vw;
+        }
+        .bg-circle-2 {
+            width: 30vw; height: 30vw; background: #818cf8; bottom: -5vw; right: -5vw;
+        }
+
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        /* --- НАВИГАЦИЯ --- */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 5%; position: sticky; top: 20px; width: 90%; margin: 0 auto; z-index: 100;
+        }
+
+        .logo { font-size: 24px; font-weight: 800; letter-spacing: -1px; color: var(--text-main); text-decoration: none; }
+        .logo span { color: var(--accent); }
+        nav ul { display: flex; gap: 30px; list-style: none; }
+        nav a { text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 16px; transition: color 0.2s;}
+        nav a:hover { color: var(--accent); }
+        .theme-toggle { background: none; border: none; color: var(--text-main); font-size: 20px; cursor: pointer; }
+
+        /* --- ГЛАВНЫЙ ЭКРАН --- */
+        .hero { display: flex; align-items: center; justify-content: space-between; min-height: 80vh; padding: 0 10%; gap: 50px; }
+        .hero-text { flex: 1; }
+        .hero-text h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; }
+        .hero-text p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 30px; max-width: 500px; }
+
+        /* Обновленная кнопка-ссылка */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(2, 132, 199, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 15px 25px rgba(2, 132, 199, 0.4);
+        }
+
+        .hero-image { flex: 1; display: flex; justify-content: center; align-items: center; }
+        .satellite-icon { font-size: 15rem; color: var(--accent); animation: float 6s ease-in-out infinite; filter: drop-shadow(0 0 30px var(--accent)); }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* --- СЕКЦИИ --- */
+        section { padding: 100px 10%; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 20px; }
+        .section-subtitle { text-align: center; font-size: 1.2rem; color: var(--text-muted); margin-bottom: 50px; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { padding: 40px; text-align: center; display: flex; flex-direction: column; gap: 15px; }
+        .card i { font-size: 3rem; color: var(--accent); margin-bottom: 10px; }
+
+        /* --- СЕКЦИЯ ИНТЕРФЕЙСА (Скриншоты) --- */
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            align-items: start;
+        }
+
+        .screenshot-card {
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 32px; /* Более круглые углы под телефон */
+        }
+
+        .screenshot-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: transform 0.4s ease;
+        }
+
+        .screenshot-card:hover img {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        /* --- ФУТЕР --- */
+        footer { text-align: center; padding: 40px 10%; margin-top: 50px; }
+
+        /* --- АДАПТИВНОСТЬ --- */
+        @media (max-width: 768px) {
+            .hero { flex-direction: column; text-align: center; margin-top: 50px; }
+            .hero-text h1 { font-size: 2.5rem; }
+            nav ul { display: none; }
+            .satellite-icon { font-size: 10rem; margin-top: 40px; }
+            .screenshots-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-circle-1"></div>
+    <div class="bg-circle-2"></div>
+
+    <header class="glass">
+        <a href="#" class="logo">Moolvy<span>.</span></a>
+        <nav>
+            <ul>
+                <li><a href="#interface">Интерфейс</a></li>
+                <li><a href="#projects">Проекты</a></li>
+                <li><a href="#privacy">Безопасность</a></li>
+                <li><a href="#about">О нас</a></li>
+            </ul>
+        </nav>
+        <button class="theme-toggle" onclick="toggleTheme()" title="Сменить тему">
+            <i class="fa-solid fa-moon" id="theme-icon"></i>
+        </button>
+    </header>
+
+    <main class="hero">
+        <div class="hero-text">
+            <h1>Всегда с вами.<br>Всегда на связи.</h1>
+            <p>Экосистема программ, созданная для людей. Красиво, быстро и абсолютно приватно.</p>
+            
+            <a href="https://github.com/Moolvy/Moolvy-Calendar.git" target="_blank" class="btn">
+                <i class="fa-brands fa-github"></i> Скачать на GitHub
+            </a>
+        </div>
+        <div class="hero-image">
+            <i class="fa-solid fa-satellite satellite-icon"></i>
+        </div>
+    </main>
+
+    <section id="interface">
+        <h2 class="section-title">Интерфейс, который не отвлекает</h2>
+        <p class="section-subtitle">Продуманный дизайн. Темная и светлая темы под ваше настроение.</p>
+        
+        <div class="screenshots-grid">
+            <div class="screenshot-card glass">
+                <img src="white.jpg" alt="Moolvy Calendar Светлая тема">
+            </div>
+            
+            <div class="screenshot-card glass">
+                <img src="time.jpg" alt="Выбор времени">
+            </div>
+
+            <div class="screenshot-card glass">
+                <img src="black.jpg" alt="Moolvy Calendar Темная тема">
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Наши проекты</h2>
+        <div class="grid">
+            <div class="card glass">
+                <i class="fa-regular fa-calendar-check"></i>
+                <h3>Moolvy Calendar</h3>
+                <p>Современный календарь для планирования задач. Простой интерфейс в стиле чистого кода.</p>
+            </div>
+            <div class="card glass">
+                <i class="fa-solid fa-code"></i>
+                <h3>Dev Tools (В разработке)</h3>
+                <p>Набор утилит для разработчиков, которые работают локально и не требуют интернета.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="privacy">
+        <h2 class="section-title">Ваши данные — только ваши</h2>
+        <div class="grid">
+            <div class="card glass">
+                <i class="fa-solid fa-user-shield"></i>
+                <h3>Мы не собираем лишние данные</h3>
+                <p>Наши программы работают на вашем устройстве. Мы не собираем телеметрию, историю или личные файлы.</p>
+            </div>
+            <div class="card glass">
+                <i class="fa-solid fa-lock"></i>
+                <h3>Полная прозрачность</h3>
+                <p>Прозрачный дизайн — прозрачные намерения. Код открыт на GitHub, скрывать нечего.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="glass" id="about" style="border-radius: 24px 24px 0 0; border-bottom: none;">
+        <h3>Moolvy.com</h3>
+        <p style="margin: 15px 0; color: var(--text-muted);">Разработано с уважением.</p>
+        <div>
+            <a href="#" style="color: var(--accent); text-decoration: none; margin: 0 10px;">Политика конфиденциальности</a>
+            <a href="#" style="color: var(--accent); text-decoration: none; margin: 0 10px;">Пользовательское соглашение</a>
+        </div>
+        <p style="margin-top: 20px; font-size: 0.9rem; color: var(--text-muted);">&copy; 2026 Moolvy.com. Все права защищены.</p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+    </script>
+</body>
+</html>

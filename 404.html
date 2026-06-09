@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Страница не найдена | Moolvy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --accent: #0284c7;
+            --glass-bg: rgba(255, 255, 255, 0.5);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            background-attachment: fixed;
+        }
+
+        .bg-circle-1, .bg-circle-2 {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.6;
+        }
+        .bg-circle-1 { width: 40vw; height: 40vw; background: #0284c7; top: -10vw; left: -10vw; }
+        .bg-circle-2 { width: 30vw; height: 30vw; background: #818cf8; bottom: -5vw; right: -5vw; }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            padding: 60px 50px;
+            max-width: 480px;
+            width: 100%;
+        }
+
+        .icon {
+            font-size: 5rem;
+            color: var(--accent);
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px var(--accent));
+            margin-bottom: 20px;
+        }
+
+        @keyframes float {
+            0%   { transform: translateY(0px) rotate(0deg); }
+            50%  { transform: translateY(-15px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .code {
+            font-size: 6rem;
+            font-weight: 800;
+            line-height: 1;
+            color: var(--accent);
+            letter-spacing: -4px;
+            margin-bottom: 10px;
+        }
+
+        h1 { font-size: 1.4rem; font-weight: 600; margin-bottom: 12px; }
+
+        p { color: var(--text-muted); line-height: 1.6; margin-bottom: 30px; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 10px 20px rgba(2, 132, 199, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(2, 132, 199, 0.4);
+        }
+
+        .logo {
+            margin-top: 30px;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text-muted);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        .logo span { color: var(--accent); }
+    </style>
+</head>
+<body>
+
+    <div class="bg-circle-1"></div>
+    <div class="bg-circle-2"></div>
+
+    <div class="card">
+        <div class="icon"><i class="fa-solid fa-satellite-dish"></i></div>
+        <div class="code">404</div>
+        <h1>Страница не найдена</h1>
+        <p>Похоже, эта страница улетела в открытый космос. Но мы всё ещё с вами — вернитесь на главную.</p>
+        <a href="/index.html" class="btn">
+            <i class="fa-solid fa-house"></i> На главную
+        </a>
+        <br>
+        <a href="/" class="logo">Moolvy<span>.</span></a>
+    </div>
+
+</body>
+</html>
